@@ -70,6 +70,11 @@ public class SaTokenConfiguration {
         return new SaExtensionInterceptor(handle -> SaRouter.match(StringConstants.PATH_PATTERN)
             .notMatch(properties.getSecurity().getExcludes())
             .check(r -> {
+                if (r.match("/api/**").isHit) {
+                    System.out.println("match /api/**");
+                    return;
+                }
+
                 // 如果包含 sign，进行 API 接口参数签名验证
                 SaRequest saRequest = SaHolder.getRequest();
                 Collection<String> paramNames = saRequest.getParamNames();

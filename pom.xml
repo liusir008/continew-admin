@@ -132,12 +132,12 @@
                 <configuration>
                     <java>
                         <removeUnusedImports/>
-                        <eclipse>
-                            <file>.style/p3c-codestyle.xml</file>
-                        </eclipse>
-                        <licenseHeader>
-                            <file>.style/license-header</file>
-                        </licenseHeader>
+<!--                        <eclipse>-->
+<!--                            <file>.style/p3c-codestyle.xml</file>-->
+<!--                        </eclipse>-->
+<!--                        <licenseHeader>-->
+<!--                            <file>.style/license-header</file>-->
+<!--                        </licenseHeader>-->
                     </java>
                 </configuration>
             </plugin>

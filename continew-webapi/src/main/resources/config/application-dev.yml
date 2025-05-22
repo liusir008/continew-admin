@@ -12,9 +12,9 @@ server:
 spring.datasource:
   type: com.zaxxer.hikari.HikariDataSource
   # 请务必提前创建好名为 continew_admin 的数据库，如果使用其他数据库名请注意同步修改 DB_NAME 配置
-  url: jdbc:p6spy:mysql://${DB_HOST:127.0.0.1}:${DB_PORT:3306}/${DB_NAME:continew_admin}?serverTimezone=Asia/Shanghai&useSSL=true&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&autoReconnect=true&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
+  url: jdbc:p6spy:mysql://${DB_HOST:localhost}:${DB_PORT:13306}/${DB_NAME:continew_admin}?serverTimezone=Asia/Shanghai&useSSL=true&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&autoReconnect=true&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
   username: ${DB_USER:root}
-  password: ${DB_PWD:123456}
+  password: ${DB_PWD:liusir008}
   driver-class-name: com.p6spy.engine.spy.P6SpyDriver
 #  # PostgreSQL 配置
 #  url: jdbc:p6spy:postgresql://${DB_HOST:127.0.0.1}:${DB_PORT:5432}/${DB_NAME:continew_admin}?serverTimezone=Asia/Shanghai&useSSL=true&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&autoReconnect=true&stringtype=unspecified
@@ -48,9 +48,9 @@ spring.data:
     # 地址
     host: ${REDIS_HOST:127.0.0.1}
     # 端口（默认 6379）
-    port: ${REDIS_PORT:6379}
+    port: ${REDIS_PORT:16379}
     # 密码（未设置密码时请注释掉）
-    password: ${REDIS_PWD:123456}
+    password: ${REDIS_PWD:liusir008}
     # 数据库索引
     database: ${REDIS_DB:0}
     # 连接超时时间
@@ -123,11 +123,13 @@ logging:
 continew-starter.security:
   crypto:
     enabled: true
-    # 对称加密算法密钥
-    password: abcdefghijklmnop
+    # 对称加密算法密钥 abcdefghijklmnop
+    password: K8H23psg5Irw3vyB
     # 非对称加密算法密钥（在线生成 RSA 密钥对：http://web.chacuo.net/netrsakeypair）
-    public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAM51dgYtMyF+tTQt80sfFOpSV27a7t9uaUVeFrdGiVxscuizE7H8SMntYqfn9lp8a5GH5P1/GGehVjUD2gF/4kcCAwEAAQ==
-    private-key: MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAznV2Bi0zIX61NC3zSx8U6lJXbtru325pRV4Wt0aJXGxy6LMTsfxIye1ip+f2WnxrkYfk/X8YZ6FWNQPaAX/iRwIDAQABAkEAk/VcAusrpIqA5Ac2P5Tj0VX3cOuXmyouaVcXonr7f+6y2YTjLQuAnkcfKKocQI/juIRQBFQIqqW/m1nmz1wGeQIhAO8XaA/KxzOIgU0l/4lm0A2Wne6RokJ9HLs1YpOzIUmVAiEA3Q9DQrpAlIuiT1yWAGSxA9RxcjUM/1kdVLTkv0avXWsCIE0X8woEjK7lOSwzMG6RpEx9YHdopjViOj1zPVH61KTxAiBmv/dlhqkJ4rV46fIXELZur0pj6WC3N7a4brR8a+CLLQIhAMQyerWl2cPNVtE/8tkziHKbwW3ZUiBXU24wFxedT9iV
+    #public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAM51dgYtMyF+tTQt80sfFOpSV27a7t9uaUVeFrdGiVxscuizE7H8SMntYqfn9lp8a5GH5P1/GGehVjUD2gF/4kcCAwEAAQ==
+    #private-key: MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAznV2Bi0zIX61NC3zSx8U6lJXbtru325pRV4Wt0aJXGxy6LMTsfxIye1ip+f2WnxrkYfk/X8YZ6FWNQPaAX/iRwIDAQABAkEAk/VcAusrpIqA5Ac2P5Tj0VX3cOuXmyouaVcXonr7f+6y2YTjLQuAnkcfKKocQI/juIRQBFQIqqW/m1nmz1wGeQIhAO8XaA/KxzOIgU0l/4lm0A2Wne6RokJ9HLs1YpOzIUmVAiEA3Q9DQrpAlIuiT1yWAGSxA9RxcjUM/1kdVLTkv0avXWsCIE0X8woEjK7lOSwzMG6RpEx9YHdopjViOj1zPVH61KTxAiBmv/dlhqkJ4rV46fIXELZur0pj6WC3N7a4brR8a+CLLQIhAMQyerWl2cPNVtE/8tkziHKbwW3ZUiBXU24wFxedT9iV
+    public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA9zHWcYUSFLQ0IgWLarZ+pnVyreaWenpilPpwQwyAmW/yrRw3GuWaulnZgicD3EWG+8fEihdVrI2CeeF4tI4KwOL2lKl8trZu4qFX+qcgvsIizxcNuKXe+pf6xFirdxKWX8507ITm4U/hQSaNMPBjlg6Eg0IPNJteFeSEDZTeNhGMYVyz3AFLgXgSeAVPLQvmS6OFojz/WK3zgGEsCISFs3LWVs74tzGpJV+Tuhx+nwwYTiKuHIYl9Lsm0j6FAMNTjNs7Hh0+YRidKOKvfdd5HDpsa57dTX7OKIG6cahJS6lOhk6KeM0U2Jp2/70Cnod4UjBqT+9LvNyBjN4MjpYigQIDAQAB
+    private-key: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQD3MdZxhRIUtDQiBYtqtn6mdXKt5pZ6emKU+nBDDICZb/KtHDca5Zq6WdmCJwPcRYb7x8SKF1WsjYJ54Xi0jgrA4vaUqXy2tm7ioVf6pyC+wiLPFw24pd76l/rEWKt3EpZfznTshObhT+FBJo0w8GOWDoSDQg80m14V5IQNlN42EYxhXLPcAUuBeBJ4BU8tC+ZLo4WiPP9YrfOAYSwIhIWzctZWzvi3MaklX5O6HH6fDBhOIq4chiX0uybSPoUAw1OM2zseHT5hGJ0o4q9913kcOmxrnt1Nfs4ogbpxqElLqU6GTop4zRTYmnb/vQKeh3hSMGpP70u83IGM3gyOliKBAgMBAAECggEAESpl0NZDzipBYIdwCgYIP3jycL8Nfg3XoK7PcuiAWadbe8f0z6pYF067+vzImNg/KmbR8CD0sxnUkLAmmKswdfqM0v/+CBYdFyHLIT3P2U9T6XuZWVQzasV5BX9+0LL6vEZy+iW0frr0Unjh3x8iWz5A13iT47xSSUToIqVO1QQ6ARmvXnGkAt/Cu3usBZmknrtb+vkICczgtStBK4NkNuVy+OtPfA7+utw17NoT9INFRWViQZw2rrj0L6sq4uTjOAjMjTpWvjxBoGMjeX0t8vvdqkihG4+tHECzwx07JyFAMCWWdksybaPjZu+dN4W60iikbNIEOoP2pwJLqbthAQKBgQD/p+gAxq3kUeC9ej1mC4tXfRvg0V/Um5xYmjxXbQnKHHXTJ/KYbqR/87H2VVJ16s4M39QY1RX7yx1dGABL3wII4QrC/s53nqpfkEqf5hXb2AcnREc8VuSyNAhestgzkFk1ljCU8uPDucUvaoV8vxbn77/yzBfUgaEndZQ6/zrGcQKBgQD3hwQO0nE/N+3eZlRXiXk7lwLLVFKeg2p0I6D1TW1cOj+tfdJlm0Uryi3S4p+TN803cC7Dr9BzWWTsSX7TJQfEr00IdjjlcMDwGgqnGUQ0kss5jrc77NOPcWs9Ct11K4L8rWpe1ROFYxq/aH8ChKcqLpsSkvLNGOhfJ7d4kZrFEQKBgQDNr1IaJb7L3hAZgZqaWhleZzqhsvINxLCSHG0FzaU9pY4qN46XkxToGLGKRXUVh7cFZqNm4zFPpkfWmTPL1vz1FdGptoV4egAK6LURVnUprfF7ZxSE+EgBE5nUTsFhIvaTBWXKwGv9EZ4SmvoQtlEAg8SD3C4j+7MjYxbCLIwmEQKBgQDGMnnxVFgRgrsYpV9LaGyGZnh6Tt6IxjlrHUw4nvK+MnXieSkK6rUMRytB/OxBeSD9Dvqi/hgvBJlnCcJfVvtNZgCMkf0k2o/isTdubTDL1+6Z+8iEVzFfXjW7/wMsWtbbdBAENyEWYTB9qzJn1cf0YrUQvlFkIFmQN8EU7aG7wQKBgCqjQXlrLatxRbmJaofSXO3bwLlITqpyuwKEG8QgmKPbz1YQRVaJdQFAAN/JRp1HzjBd9zMhVWUs9PHejUAoz6+MJjP2o/oAak710ygFs8ZWrGJCgML5Jq967nB+hdjj5ytwFVqEcZFfOgzxBzg9/2mka7nI/6IzH0JwEuMbPfgU
 
 --- ### 验证码配置
 continew-starter.captcha:

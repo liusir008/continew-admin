@@ -80,7 +80,10 @@ public class SmsConfigServiceImpl extends BaseServiceImpl<SmsConfigMapper, SmsCo
 
     @Override
     public SmsConfigDO getDefaultConfig() {
-        return baseMapper.lambdaQuery().eq(SmsConfigDO::getIsDefault, true).eq(SmsConfigDO::getStatus, DisEnableStatusEnum.ENABLE).one();
+        return baseMapper.lambdaQuery()
+            .eq(SmsConfigDO::getIsDefault, true)
+            .eq(SmsConfigDO::getStatus, DisEnableStatusEnum.ENABLE)
+            .one();
     }
 
     /**

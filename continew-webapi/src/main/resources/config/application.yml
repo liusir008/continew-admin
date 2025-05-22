@@ -244,7 +244,7 @@ sa-token:
   # 是否输出操作日志
   is-log: false
   # JWT 秘钥
-  jwt-secret-key: asdasdasifhueuiwyurfewbfjsdafjk
+  jwt-secret-key: 80fa7e1cb22f1b52f9d3f647a70a9c68
   ## 扩展配置
   extension:
     enabled: true
