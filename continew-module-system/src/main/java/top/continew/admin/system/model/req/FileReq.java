@@ -41,8 +41,8 @@ public class FileReq implements Serializable {
      * 名称
      */
     @Schema(description = "名称", example = "example")
-    @NotBlank(message = "文件名称不能为空")
-    @Length(max = 255, message = "文件名称长度不能超过 {max} 个字符")
+    @NotBlank(message = "名称不能为空")
+    @Length(max = 255, message = "名称长度不能超过 {max} 个字符")
     private String originalName;
 
     /**

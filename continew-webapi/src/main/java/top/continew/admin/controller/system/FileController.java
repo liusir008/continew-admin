@@ -18,7 +18,10 @@ package top.continew.admin.controller.system;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.dromara.x.file.storage.core.FileInfo;
@@ -63,11 +66,12 @@ public class FileController extends BaseController<FileService, FileResp, FileRe
      * @return 文件上传响应参数
      * @throws IOException /
      */
-    @SaCheckPermission("system:file:upload")
     @Operation(summary = "上传文件", description = "上传文件")
+    @Parameter(name = "parentPath", description = "上级目录", example = "/", in = ParameterIn.QUERY)
+    @SaCheckPermission("system:file:upload")
     @PostMapping("/upload")
-    public FileUploadResp upload(@NotNull(message = "文件不能为空") MultipartFile file,
-                                 String parentPath) throws IOException {
+    public FileUploadResp upload(@NotNull(message = "文件不能为空") @RequestPart MultipartFile file,
+                                 @RequestParam(required = false) String parentPath) throws IOException {
         ValidationUtils.throwIf(file::isEmpty, "文件不能为空");
         FileInfo fileInfo = baseService.upload(file, parentPath);
         return FileUploadResp.builder()
@@ -81,7 +85,8 @@ public class FileController extends BaseController<FileService, FileResp, FileRe
     @Operation(summary = "创建文件夹", description = "创建文件夹")
     @SaCheckPermission("system:file:createDir")
     @PostMapping("/dir")
-    public IdResp<Long> createDir(@RequestBody FileReq req) {
+    public IdResp<Long> createDir(@Valid @RequestBody FileReq req) {
+        ValidationUtils.throwIfBlank(req.getParentPath(), "上级目录不能为空");
         return new IdResp<>(baseService.createDir(req));
     }
 

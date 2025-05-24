@@ -231,7 +231,7 @@ public class StorageServiceImpl extends BaseServiceImpl<StorageMapper, StorageDO
      */
     private String decryptSecretKey(String encryptSecretKey, StorageDO storage) {
         // 修改时，如果 SecretKey 不修改，需要手动修正
-        if (null != storage) {
+        if (storage != null) {
             boolean isSecretKeyNotUpdate = StrUtil.isBlank(encryptSecretKey) || encryptSecretKey
                 .contains(StringConstants.ASTERISK);
             if (isSecretKeyNotUpdate) {
@@ -253,6 +253,6 @@ public class StorageServiceImpl extends BaseServiceImpl<StorageMapper, StorageDO
      * @return 是否存在
      */
     private boolean isCodeExists(String code, Long id) {
-        return baseMapper.lambdaQuery().eq(StorageDO::getCode, code).ne(null != id, StorageDO::getId, id).exists();
+        return baseMapper.lambdaQuery().eq(StorageDO::getCode, code).ne(id != null, StorageDO::getId, id).exists();
     }
 }

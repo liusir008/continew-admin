@@ -14,37 +14,39 @@
  * limitations under the License.
  */
 
-package top.continew.admin.system.model.resp.message;
+package top.continew.admin.system.service;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
-import top.continew.admin.system.enums.MessageTypeEnum;
-
-import java.io.Serial;
-import java.io.Serializable;
+import java.util.List;
 
 /**
- * 各类型未读消息响应参数
+ * 公告日志业务接口
  *
  * @author Charles7c
- * @since 2023/11/2 23:00
+ * @since 2025/5/18 19:12
  */
-@Data
-@Schema(description = "各类型未读消息响应参数")
-public class MessageTypeUnreadResp implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
+public interface NoticeLogService {
 
     /**
-     * 类型
+     * 新增
+     *
+     * @param userIds  用户 ID 列表
+     * @param noticeId 公告 ID
+     * @return 是否新增成功（true：成功；false：无变更/失败）
      */
-    @Schema(description = "类型", example = "1")
-    private MessageTypeEnum type;
+    boolean add(List<Long> userIds, Long noticeId);
 
     /**
-     * 数量
+     * 根据公告 ID 列表删除
+     *
+     * @param noticeIds 公告 ID 列表
      */
-    @Schema(description = "数量", example = "10")
-    private Long count;
+    void deleteByNoticeIds(List<Long> noticeIds);
+
+    /**
+     * 根据公告 ID 查询用户 ID 列表
+     *
+     * @param noticeId 公告 ID
+     * @return 用户 ID 列表
+     */
+    List<Long> listUserIdByNoticeId(Long noticeId);
 }

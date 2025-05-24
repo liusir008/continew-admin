@@ -66,9 +66,10 @@ public class CommonController {
     private final OptionService optionService;
 
     @Operation(summary = "上传文件", description = "上传文件")
+    @Parameter(name = "parentPath", description = "上级目录", example = "/", in = ParameterIn.QUERY)
     @PostMapping("/file")
-    public FileUploadResp upload(@NotNull(message = "文件不能为空") MultipartFile file,
-                                 String parentPath) throws IOException {
+    public FileUploadResp upload(@NotNull(message = "文件不能为空") @RequestPart MultipartFile file,
+                                 @RequestParam(required = false) String parentPath) throws IOException {
         ValidationUtils.throwIf(file::isEmpty, "文件不能为空");
         FileInfo fileInfo = fileService.upload(file, parentPath);
         return FileUploadResp.builder()

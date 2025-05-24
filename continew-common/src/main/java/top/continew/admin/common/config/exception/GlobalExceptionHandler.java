@@ -155,7 +155,7 @@ public class GlobalExceptionHandler {
         }
         String sizeLimit;
         Throwable cause = e.getCause();
-        if (null != cause) {
+        if (cause != null) {
             msg = msg.concat(cause.getMessage().toLowerCase());
         }
         if (msg.contains("larger than")) {

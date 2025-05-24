@@ -505,7 +505,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, UserDO, UserRes
         List<Long> userIdList = query.getUserIds();
         // 获取排除用户 ID 列表
         List<Long> excludeUserIdList = null;
-        if (null != query.getRoleId()) {
+        if (query.getRoleId() != null) {
             excludeUserIdList = userRoleService.listUserIdByRoleId(query.getRoleId());
         }
         return new QueryWrapper<UserDO>().and(StrUtil.isNotBlank(description), q -> q.like("t1.username", description)
@@ -513,10 +513,10 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, UserDO, UserRes
             .like("t1.nickname", description)
             .or()
             .like("t1.description", description))
-            .eq(null != status, "t1.status", status)
+            .eq(status != null, "t1.status", status)
             .between(CollUtil.isNotEmpty(createTimeList), "t1.create_time", CollUtil.getFirst(createTimeList), CollUtil
                 .getLast(createTimeList))
-            .and(null != deptId && !SysConstants.SUPER_DEPT_ID.equals(deptId), q -> {
+            .and(deptId != null && !SysConstants.SUPER_DEPT_ID.equals(deptId), q -> {
                 List<Long> deptIdList = deptService.listChildren(deptId)
                     .stream()
                     .map(DeptDO::getId)
@@ -679,7 +679,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, UserDO, UserRes
      * @return 是否存在
      */
     private boolean isNameExists(String name, Long id) {
-        return baseMapper.lambdaQuery().eq(UserDO::getUsername, name).ne(null != id, UserDO::getId, id).exists();
+        return baseMapper.lambdaQuery().eq(UserDO::getUsername, name).ne(id != null, UserDO::getId, id).exists();
     }
 
     /**
@@ -691,7 +691,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, UserDO, UserRes
      */
     private boolean isEmailExists(String email, Long id) {
         Long count = baseMapper.selectCountByEmail(email, id);
-        return null != count && count > 0;
+        return count != null && count > 0;
     }
 
     /**
@@ -703,7 +703,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, UserDO, UserRes
      */
     private boolean isPhoneExists(String phone, Long id) {
         Long count = baseMapper.selectCountByPhone(phone, id);
-        return null != count && count > 0;
+        return count != null && count > 0;
     }
 
     /**
@@ -725,7 +725,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, UserDO, UserRes
      */
     private void updateContext(Long id) {
         UserContext userContext = UserContextHolder.getContext(id);
-        if (null != userContext) {
+        if (userContext != null) {
             userContext.setRoles(roleService.listByUserId(id));
             userContext.setPermissions(roleService.listPermissionByUserId(id));
             UserContextHolder.setContext(userContext);

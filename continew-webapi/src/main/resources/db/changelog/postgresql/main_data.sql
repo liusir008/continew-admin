@@ -46,10 +46,11 @@ VALUES
 
 (1090, '通知公告', 1000, 2, '/system/notice', 'SystemNotice', 'system/notice/index', NULL, 'notification', false, false, false, NULL, 5, 1, 1, NOW()),
 (1091, '列表', 1090, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'system:notice:list', 1, 1, 1, NOW()),
-(1092, '公告详情', 1090, 2, '/system/notice/detail', 'SystemNoticeDetail', 'system/notice/detail/index', NULL, NULL, false, false, true, 'system:notice:get', 2, 1, 1, NOW()),
-(1093, '发布公告', 1090, 2, '/system/notice/add', 'SystemNoticeAdd', 'system/notice/add/index', NULL, NULL, false, false, true, 'system:notice:create', 3, 1, 1, NOW()),
-(1094, '修改', 1090, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'system:notice:update', 4, 1, 1, NOW()),
-(1095, '删除', 1090, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'system:notice:delete', 5, 1, 1, NOW()),
+(1092, '详情', 1090, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'system:notice:get', 2, 1, 1, NOW()),
+(1093, '查看公告', 1090, 2, '/system/notice/view', 'SystemNoticeView', 'system/notice/view/index', NULL, NULL, false, false, true, 'system:notice:view', 3, 1, 1, NOW()),
+(1094, '发布公告', 1090, 2, '/system/notice/add', 'SystemNoticeAdd', 'system/notice/add/index', NULL, NULL, false, false, true, 'system:notice:create', 4, 1, 1, NOW()),
+(1095, '修改', 1090, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'system:notice:update', 5, 1, 1, NOW()),
+(1096, '删除', 1090, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'system:notice:delete', 6, 1, 1, NOW()),
 
 (1110, '文件管理', 1000, 2, '/system/file', 'SystemFile', 'system/file/index', NULL, 'file', false, false, false, NULL, 6, 1, 1, NOW()),
 (1111, '列表', 1110, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'system:file:list', 1, 1, 1, NOW()),
@@ -215,24 +216,21 @@ VALUES
 INSERT INTO "sys_dict"
 ("id", "name", "code", "description", "is_system", "create_user", "create_time")
 VALUES
-(1, '公告类型', 'notice_type', NULL, true, 1, NOW()),
-(2, '消息类型', 'message_type', NULL, true, 1, NOW()),
-(3, '客户端类型', 'client_type', NULL, true, 1, NOW()),
-(4, '短信厂商', 'sms_supplier', NULL, true, 1, NOW());
+(1, '公告分类', 'notice_type', NULL, true, 1, NOW()),
+(2, '客户端类型', 'client_type', NULL, true, 1, NOW()),
+(3, '短信厂商', 'sms_supplier', NULL, true, 1, NOW());
 
 INSERT INTO "sys_dict_item"
 ("id", "label", "value", "color", "sort", "description", "status", "dict_id", "create_user", "create_time")
 VALUES
-(1, '通知', '1', 'primary', 1, NULL, 1, 1, 1, NOW()),
-(2, '活动', '2', 'success', 2, NULL, 1, 1, 1, NOW()),
-(3, '安全消息', '1', 'warning', 1, NULL, 1, 2, 1, NOW()),
-(4, '活动消息', '2', 'success', 2, NULL, 1, 2, 1, NOW()),
-(5, '桌面端', 'PC', 'primary', 1, NULL, 1, 3, 1, NOW()),
-(6, '安卓', 'ANDROID', 'success', 2, NULL, 1, 3, 1, NOW()),
-(7, '小程序', 'XCX', 'warning', 3, NULL, 1, 3, 1, NOW()),
-(8, '阿里云', 'alibaba', 'warning', 1, NULL, 1, 4, 1, NOW()),
-(9, '腾讯云', 'tencent', 'primary', 2, NULL, 1, 4, 1, NOW()),
-(10, '容联云', 'cloopen', 'success', 3, NULL, 1, 4, 1, NOW());
+(1, '产品新闻', '1', 'primary', 1, NULL, 1, 1, 1, NOW()),
+(2, '企业动态', '2', 'success', 2, NULL, 1, 1, 1, NOW()),
+(3, '桌面端', 'PC', 'primary', 1, NULL, 1, 2, 1, NOW()),
+(4, '安卓', 'ANDROID', 'success', 2, NULL, 1, 2, 1, NOW()),
+(5, '小程序', 'XCX', 'warning', 3, NULL, 1, 2, 1, NOW()),
+(6, '阿里云', 'alibaba', 'warning', 1, NULL, 1, 3, 1, NOW()),
+(7, '腾讯云', 'tencent', 'primary', 2, NULL, 1, 3, 1, NOW()),
+(8, '容联云', 'cloopen', 'success', 3, NULL, 1, 3, 1, NOW());
 
 -- 初始化默认用户和角色关联数据
 INSERT INTO "sys_user_role"

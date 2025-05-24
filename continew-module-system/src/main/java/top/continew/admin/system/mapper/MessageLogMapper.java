@@ -14,32 +14,17 @@
  * limitations under the License.
  */
 
-package top.continew.admin.system.enums;
+package top.continew.admin.system.mapper;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import top.continew.admin.system.model.entity.MessageLogDO;
+import top.continew.starter.data.mp.base.BaseMapper;
 
 /**
- * 消息模板枚举
+ * 消息日志 Mapper
  *
  * @author Bull-BCLS
- * @since 2023/10/15 19:51
+ * @author Charles7c
+ * @since 2023/10/15 20:25
  */
-@Getter
-@RequiredArgsConstructor
-public enum MessageTemplateEnum {
-
-    /**
-     * 第三方登录
-     */
-    SOCIAL_REGISTER("欢迎注册 %s", "尊敬的 %s，欢迎注册使用，请及时配置您的密码。", "/user/profile"),
-
-    /**
-     * 公告发布
-     */
-    NOTICE_PUBLISH("您有一条新的公告", "公告《%s》已发布，请及时查看。", "/user/notice?id=%s");
-
-    private final String title;
-    private final String content;
-    private final String path;
+public interface MessageLogMapper extends BaseMapper<MessageLogDO> {
 }

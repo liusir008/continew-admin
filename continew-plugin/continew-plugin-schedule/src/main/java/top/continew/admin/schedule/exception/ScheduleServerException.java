@@ -14,34 +14,23 @@
  * limitations under the License.
  */
 
-package top.continew.admin.system.enums;
+package top.continew.admin.schedule.exception;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import top.continew.admin.common.constant.UiConstants;
-import top.continew.starter.core.enums.BaseEnum;
+import top.continew.starter.core.exception.BaseException;
 
 /**
- * 消息类型枚举
+ * 调度服务异常
  *
  * @author Charles7c
- * @since 2023/11/2 20:08
+ * @since 2025/5/21 22:05
  */
-@Getter
-@RequiredArgsConstructor
-public enum MessageTypeEnum implements BaseEnum<Integer> {
+public class ScheduleServerException extends BaseException {
 
-    /**
-     * 系统消息
-     */
-    SYSTEM(1, "系统消息", UiConstants.COLOR_PRIMARY),
+    public ScheduleServerException(String message) {
+        super(message);
+    }
 
-    /**
-     * 安全消息
-     */
-    SECURITY(2, "安全消息", UiConstants.COLOR_WARNING),;
-
-    private final Integer value;
-    private final String description;
-    private final String color;
+    public ScheduleServerException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

@@ -14,37 +14,49 @@
  * limitations under the License.
  */
 
-package top.continew.admin.system.model.resp.message;
+package top.continew.admin.system.model.entity;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-import top.continew.admin.system.enums.MessageTypeEnum;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
- * 各类型未读消息响应参数
+ * 消息日志实体
  *
  * @author Charles7c
- * @since 2023/11/2 23:00
+ * @author Bull-BCLS
+ * @since 2023/10/15 20:25
  */
 @Data
-@Schema(description = "各类型未读消息响应参数")
-public class MessageTypeUnreadResp implements Serializable {
+@NoArgsConstructor
+@TableName("sys_message_log")
+public class MessageLogDO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     /**
-     * 类型
+     * 消息 ID
      */
-    @Schema(description = "类型", example = "1")
-    private MessageTypeEnum type;
+    private Long messageId;
 
     /**
-     * 数量
+     * 用户 ID
      */
-    @Schema(description = "数量", example = "10")
-    private Long count;
+    private Long userId;
+
+    /**
+     * 读取时间
+     */
+    private LocalDateTime readTime;
+
+    public MessageLogDO(Long messageId, Long userId, LocalDateTime readTime) {
+        this.messageId = messageId;
+        this.userId = userId;
+        this.readTime = readTime;
+    }
 }

@@ -18,28 +18,23 @@ package top.continew.admin.system.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import top.continew.starter.core.enums.BaseEnum;
 
 /**
- * 消息模板枚举
+ * 公告通知方式枚举
  *
- * @author Bull-BCLS
- * @since 2023/10/15 19:51
+ * @author Charles7c
+ * @since 2025/5/8 21:18
  */
 @Getter
 @RequiredArgsConstructor
-public enum MessageTemplateEnum {
+public enum NoticeMethodEnum implements BaseEnum<Integer> {
 
     /**
-     * 第三方登录
+     * 系统消息
      */
-    SOCIAL_REGISTER("欢迎注册 %s", "尊敬的 %s，欢迎注册使用，请及时配置您的密码。", "/user/profile"),
+    SYSTEM_MESSAGE(1, "系统消息"),;
 
-    /**
-     * 公告发布
-     */
-    NOTICE_PUBLISH("您有一条新的公告", "公告《%s》已发布，请及时查看。", "/user/notice?id=%s");
-
-    private final String title;
-    private final String content;
-    private final String path;
+    private final Integer value;
+    private final String description;
 }

@@ -14,37 +14,36 @@
  * limitations under the License.
  */
 
-package top.continew.admin.system.model.resp.message;
+package top.continew.admin.system.model.resp.notice;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
-import top.continew.admin.system.enums.MessageTypeEnum;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * 各类型未读消息响应参数
+ * 未读公告响应参数
  *
  * @author Charles7c
- * @since 2023/11/2 23:00
+ * @since 2025/5/20 22:00
  */
 @Data
-@Schema(description = "各类型未读消息响应参数")
-public class MessageTypeUnreadResp implements Serializable {
+@NoArgsConstructor
+@Schema(description = "未读公告响应参数")
+public class NoticeUnreadResp implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     /**
-     * 类型
+     * 未读公告数量
      */
-    @Schema(description = "类型", example = "1")
-    private MessageTypeEnum type;
+    @Schema(description = "未读公告数量", example = "1")
+    private Long total;
 
-    /**
-     * 数量
-     */
-    @Schema(description = "数量", example = "10")
-    private Long count;
+    public NoticeUnreadResp(Long total) {
+        this.total = total;
+    }
 }

@@ -18,7 +18,7 @@ spring.datasource:
   driver-class-name: com.p6spy.engine.spy.P6SpyDriver
 #  # PostgreSQL 配置
 #  url: jdbc:p6spy:postgresql://${DB_HOST:127.0.0.1}:${DB_PORT:5432}/${DB_NAME:continew_admin}?serverTimezone=Asia/Shanghai&useSSL=true&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&autoReconnect=true&stringtype=unspecified
-#  username: ${DB_USER:root}
+#  username: ${DB_USER:postgres}
 #  password: ${DB_PWD:123456}
 #  driver-class-name: com.p6spy.engine.spy.P6SpyDriver
   # Hikari 连接池配置
@@ -170,7 +170,7 @@ captcha:
     expirationInMinutes: 5
 
 --- ### 短信配置
-## 提示：配置文件方式和 [短信配置] 功能可任选其一方式使用，也可共同使用，但实际开发时建议选择一种，注释或删除另一方
+## 提示：配置文件方式和 [系统管理/系统配置/短信配置] 功能可任选其一方式使用，也可共同使用，但实际开发时建议选择一种，注释或删除另一方
 sms:
   http-log: true
   is-print: true
@@ -186,7 +186,7 @@ sms:
 #      sdk-app-id: 你的应用ID
 
 --- ### 邮件配置
-## 提示：配置文件方式和 [邮件配置] 功能可任选其一方式使用，实际开发时请注释或删除另一方
+## 提示：配置文件方式和 [系统管理/系统配置/邮件配置] 功能可任选其一方式使用，实际开发时请注释或删除另一方
 #spring.mail:
 #  # 根据需要更换
 #  host: smtp.126.com
