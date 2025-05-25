@@ -72,6 +72,7 @@ public class SaTokenConfiguration {
             .check(r -> {
                 if (r.match("/api/**").isHit) {
                     System.out.println("match /api/**");
+                    StpKit.API.checkLogin();
                     return;
                 }
 
