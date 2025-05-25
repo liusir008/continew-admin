@@ -203,6 +203,9 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, UserDO, UserRes
             .select(UserDO::getNickname, UserDO::getIsSystem)
             .in(UserDO::getId, ids)
             .list();
+        List<Long> idList = list.stream().map(UserDO::getId).toList();
+        Collection<Long> subtractIds = CollUtil.subtract(ids, idList);
+        CheckUtils.throwIfNotEmpty(subtractIds, "所选用户 [{}] 不存在", CollUtil.join(subtractIds, StringConstants.COMMA));
         Optional<UserDO> isSystemData = list.stream().filter(UserDO::getIsSystem).findFirst();
         CheckUtils.throwIf(isSystemData::isPresent, "所选用户 [{}] 是系统内置用户，不允许删除", isSystemData.orElseGet(UserDO::new)
             .getNickname());
@@ -392,7 +395,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, UserDO, UserRes
     public String updateAvatar(MultipartFile avatarFile, Long id) throws IOException {
         String avatarImageType = FileNameUtil.extName(avatarFile.getOriginalFilename());
         CheckUtils.throwIf(!StrUtil.equalsAnyIgnoreCase(avatarImageType, avatarSupportSuffix), "头像仅支持 {} 格式的图片", String
-            .join(StringConstants.CHINESE_COMMA, avatarSupportSuffix));
+            .join(StringConstants.COMMA, avatarSupportSuffix));
         // 上传新头像
         UserDO user = super.getById(id);
         FileInfo fileInfo = fileService.upload(avatarFile, avatarPath);
