@@ -119,7 +119,7 @@ public class GeneratorServiceImpl implements GeneratorService {
     @Override
     public GenConfigDO getGenConfig(String tableName) throws SQLException {
         GenConfigDO genConfig = genConfigMapper.selectById(tableName);
-        if (null == genConfig) {
+        if (genConfig == null) {
             genConfig = new GenConfigDO(tableName);
             // 默认包名（当前包名）
             String packageName = ClassUtil.getPackage(GeneratorService.class);

@@ -89,7 +89,7 @@ public class SocialLoginHandler extends AbstractLoginHandler<SocialLoginReq> {
         String openId = authUser.getUuid();
         UserSocialDO userSocial = userSocialService.getBySourceAndOpenId(source, openId);
         UserDO user;
-        if (null == userSocial) {
+        if (userSocial == null) {
             String username = authUser.getUsername();
             String nickname = authUser.getNickname();
             UserDO existsUser = userService.getByUsername(username);

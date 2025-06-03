@@ -75,7 +75,7 @@ public class FileRecorderImpl implements FileRecorder {
     @Override
     public FileInfo getByUrl(String url) {
         FileDO file = this.getFileByUrl(url);
-        if (null == file) {
+        if (file == null) {
             return null;
         }
         StorageDO storageDO = storageMapper.lambdaQuery().eq(StorageDO::getId, file.getStorageId()).one();
@@ -85,7 +85,7 @@ public class FileRecorderImpl implements FileRecorder {
     @Override
     public boolean delete(String url) {
         FileDO file = this.getFileByUrl(url);
-        if (null == file) {
+        if (file == null) {
             return false;
         }
         return fileMapper.lambdaUpdate().eq(FileDO::getId, file.getId()).remove();
