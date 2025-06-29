@@ -17,12 +17,21 @@
 package top.continew.admin;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import top.continew.admin.controller.app.SidGeneratorService;
 
 @SpringBootTest
 class ContiNewAdminApplicationTests {
 
+    @Autowired
+    public SidGeneratorService sidGeneratorService;
+
     @Test
     void contextLoads() {
+        for (int i = 0; i < 1000; i++) {
+            int sid = sidGeneratorService.generateUniqueSid();
+            System.out.println("line " + (i + 1) + ": " + sid);
+        }
     }
 }
